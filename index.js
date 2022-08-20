@@ -42,7 +42,7 @@ app.post('/tracker', async (req, res) => {
 
 app.get('/tracker', async (req, res) => {
   try{
-    const _ =  await db.getParms({test: 1})
+    const _ =  await db.getParms(req.body)
     res.send({
       code: 1,
       data: _,
