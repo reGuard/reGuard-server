@@ -7,16 +7,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 // in latest body-parser use like below.
 app.use(bodyParser.urlencoded({ extended: true }));
+const db = require('./util/mongo')
 
-
-
-const test = async () => {
-  const db = require('./util/mongo')
-
-const res = await db.addParms({test: 1})
-console.log(res)
-}
-test()
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
@@ -28,9 +20,43 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-app.post('/tracker', (req, res) => {
-  res.send('Hello World!')
-  console.log(req.body)
+app.post('/tracker', async (req, res) => {
+  try{
+    const _ = await db.addParms(req.body)
+    res.send({
+      code: 1,
+      data: {
+        id: _
+      },
+      msg: 'success'
+    })
+  }catch(e)
+  {
+    res.send({
+      code: 0,
+      data: {},
+      msg: e
+    })
+  }
+})
+
+app.get('/tracker', async (req, res) => {
+  try{
+    const _ =  await db.getParms({test: 1})
+    res.send({
+      code: 1,
+      data: _,
+      msg: 'success'
+    })
+  }catch(e)
+  {
+    res.send({
+      code: 0,
+      data: [],
+      msg: e
+    })
+  }
+  
 })
 
 app.listen(port, () => {
