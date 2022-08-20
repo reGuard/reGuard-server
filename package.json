@@ -1,0 +1,25 @@
+{
+  "name": "reguard-server",
+  "version": "1.0.0",
+  "description": "Web server for reGuard ( back-end )",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/re-guard/reGuard-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/re-guard/reGuard-server/issues"
+  },
+  "homepage": "https://github.com/re-guard/reGuard-server#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mongodb": "^4.9.0"
+  }
+}
