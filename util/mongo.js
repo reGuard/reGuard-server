@@ -22,7 +22,7 @@ const getParms = async (parms) => {
     return new Promise((resolve, reject) => {
         MongoClient.connect(url, async (err, db)=>{
             const dbo = db.db(db_name)
-            const res = dbo.collection(collection_name).find(parms).toArray().then((res)=>{
+            dbo.collection(collection_name).find(parms).toArray().then((res)=>{
                 res.map((x)=>{
                     x._id = x._id.toString()
                 })
@@ -32,8 +32,20 @@ const getParms = async (parms) => {
     })       
 }
 
+const removeData = async(parms) => {
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(url, async (err, db)=>{
+            const dbo = db.db(db_name)
+            dbo.collection(collection_name).deleteMany(parms).then((res)=>{
+                resolve(res.deletedCount)
+            });
+        })
+    })  
+}
+
 
 module.exports = {
     addParms,
-    getParms
+    getParms,
+    removeData
 }

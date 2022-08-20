@@ -59,6 +59,27 @@ app.get('/tracker', async (req, res) => {
   
 })
 
+app.delete('/tracker', async (req, res) => {
+  try{
+    const _ = await db.removeData(req.body)
+    res.send({
+      code: 1,
+      data: {
+        deleteCount: _
+      },
+      msg: 'success'
+    })
+  }catch(e)
+  {
+    res.send({
+      code: 0,
+      data: {},
+      msg: e
+    })
+  }
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
