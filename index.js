@@ -22,7 +22,8 @@ app.all('*', function(req, res, next) {
 
 app.post('/tracker', async (req, res) => {
   try{
-    const _ = await db.addParms(req.body)
+    const _ = await db.addParms(JSON.parse(Object.keys(req.body)[0]))
+      
     res.send({
       code: 1,
       data: {
