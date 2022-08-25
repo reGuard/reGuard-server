@@ -43,7 +43,7 @@ app.post('/tracker', async (req, res) => {
 
 app.get('/tracker', async (req, res) => {
   if(req.query.uuid === 'admin') {
-    req.query.uuid = undefined;
+    req.query = {};
   }
   try{
     const _ =  await db.getParms(req.query)
