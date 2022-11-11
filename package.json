@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/re-guard/reGuard-server.git"
   },
-  "author": "",
+  "author": "reguard",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/re-guard/reGuard-server/issues"
